@@ -53,7 +53,7 @@ The only "non-feature" columns that will be in the final datasets are:
 * Class - Indicates the recommendation whether to invest (1) or decline (0) the stock.  It is dictated by the price variance as shown in the figure below.
 
 
-![](../Images/Price_Variance.png)
+![](./Images/Price_Variance.png)
 
 
 Some of the features were already existing in the main dataset, but most needed to be derived algebraically from the financial information of each company.
@@ -66,21 +66,21 @@ The first step I took in this phase of the project was to check the data distrib
 
 Once I took care of those stocks, I checked the distribution of each feature.  For the most part the features had a clear difference in the standard deviation, as shown in the image below.
 
-![](../Images/Price_Earning_Ratio_Kernel_Density.png)
+![](./Images/Price_Earning_Ratio_Kernel_Density.png)
 
 Two of the features that did not present clear differences in the mean or standard deviation, such as the cash ratio feature (shown in the graph below), were proven to have different means with a permutation test.
 
-![](../Images/Cash_Ratio_Kernel_Density_Plot.png)
+![](./Images/Cash_Ratio_Kernel_Density_Plot.png)
 
 The sole feature that I was not able to prove to have difference statistical values between the classes was the debt ratio feature.  That does not mean I will take it from the dataset.  Instead it serves for me to know which features to expect having less of an impact in the creation of the model.
 
 A heatmap was also created to see which features could be considered redundancies.  fortunatelly not many were found and those that were, for the most part, did not have a strong correlation.  The only exceptions are the price earning to growth ratio and the price sales ratio, with a fairly high correlation, and the price to sales ratio and the profit margin, with an almost fully inverse relationship.
 
-![](../Images/Focused_Heatmap.png)
+![](./Images/Focused_Heatmap.png)
 
 The sector feature was the only non numeric feature in the dataset.  To analyze its data I used a count chart that counted how many of each sector had decline class and how many had invest class.  This chart is as follows.
 
-![](../Images/Sector_Count_per_Class.png)
+![](./Images/Sector_Count_per_Class.png)
 
 
 ## 5. Machine Learning
@@ -91,13 +91,13 @@ The classifiers I decided to use were the Random Forest Classifier and the Extre
 
 The decision between which classifier and which dataset to use was made by measuring the precision score of each model.  The reason why I chose to highlight the precision score is because in order to get a high precision score, the model needs to produce less type I error, which would be predicting less false positives.  The reason I chose to focus on that is because I want to keep the percentage loss to as low as possible.  The best result was the Extreme Gradient Boosting model utilizing the regular data.  The results are as follows.
 
-![](../Images/Model_Score_Table.PNG)
+![](./Images/Model_Score_Table.PNG)
 
 Because the winning model had a precision score of a bit over 0.62, which I considered a bit low, I used other methods to try and check its quality.  These methods were to check the concentration of the predicted losses, the percentage of losing stocks per loss range did the model predict, and comparing the average predicted loss with the average predicted gains.  The following graphics demonstrates those three key issues.
 
-![](../Images/Predicted_Loss.png)
-![](../Images/Average_Predicted_Loss.png)
-![](../Images/Average_Gain_and_Loss.png)
+![](./Images/Predicted_Loss.png)
+![](./Images/Average_Predicted_Loss.png)
+![](./Images/Average_Gain_and_Loss.png)
 
 The model was able to concentrate the losses to closer to 0, the percentage of predicted loss gradually decreased as the price variance percentage went further into the negative values, and the mean gains far outweights the mean losses.
 
